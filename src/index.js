@@ -2,15 +2,16 @@ import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Comp from './comp';
-import Login from './login';
-import Navbar1 from './components/navbar/Navbar1';
+//import Navbar1 from './components/navbar/Navbar1';
+import Dummy from './components/dummy';
+import Leaderboard from './components/leaderboard/leaderboard';
+import App from './components/leaderboard/temp';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Navbar1/>
+    <Leaderboard/>
   </React.StrictMode>
 );
 

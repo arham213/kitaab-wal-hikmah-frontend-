@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 
-function Comp() {
+function Signup() {
   return (
 <section class="bg-light py-3 py-md-5 py-xl-8">
   <div class="container">
@@ -74,4 +74,4 @@ function Comp() {
   );
 }
 
-export default Comp;
+export default Signup;
