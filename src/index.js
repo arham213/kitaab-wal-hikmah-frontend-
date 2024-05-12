@@ -2,17 +2,21 @@ import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-//import Navbar1 from './components/navbar/Navbar1';
-import Dummy from './components/dummy';
-import Leaderboard from './components/leaderboard/leaderboard';
-import App from './components/leaderboard/temp';
 import reportWebVitals from './reportWebVitals';
+import { store } from './store/store';
+import App from './App';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <Leaderboard/>
-  </React.StrictMode>
+  <BrowserRouter>
+    <React.StrictMode>
+        <Provider store={store}>
+          <App/>
+        </Provider>
+    </React.StrictMode>
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function

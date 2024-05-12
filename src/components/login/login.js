@@ -1,4 +1,32 @@
+import axios from "axios";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom"
+import { authActions } from "../../store/store";
+
 function Login(){
+  const dispatch=useDispatch();
+  const history=useNavigate();
+  const [userCredentials, setUserCredentials]=useState({
+    email:'',
+    password:''
+  })
+
+  const sendLoginRequest= async()=>{
+    const res=await axios.post('http://localhost:8080/login',{
+      email:userCredentials.email,
+      password:userCredentials.password
+    }).catch(error => console.log("Error Logging User In:",error));
+    const data=await res.data;
+    return data;
+  }
+
+  const loginUser=(e)=>{
+    e.preventDefault();
+    sendLoginRequest()
+    .then(()=>dispatch(authActions.login()))
+    .then(()=>history('/home'));
+  }
     return(
         <section class="bg-light py-3 py-md-5 py-xl-8">
         <div class="container">
@@ -22,19 +50,19 @@ function Login(){
                     <div class="row gy-3 overflow-hidden">
                       <div class="col-12">
                         <div class="form-floating mb-3">
-                          <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" required></input>
+                          <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" onChange={e=>setUserCredentials({...userCredentials,email:e.target.value})} required></input>
                           <label for="email" class="form-label">Email</label>
                         </div>
                       </div>
                       <div class="col-12">
                         <div class="form-floating mb-3">
-                          <input type="password" class="form-control" name="password" id="password" value="" placeholder="Password" required></input>
+                          <input type="password" class="form-control" name="password" id="password" placeholder="Password" onChange={e=>setUserCredentials({...userCredentials,password:e.target.value})} required></input>
                           <label for="password" class="form-label">Password</label>
                         </div>
                       </div>
                       <div class="col-12">
                         <div class="d-grid">
-                          <button class="btn btn-primary btn-lg" type="submit">Login</button>
+                          <button class="btn btn-primary btn-lg" type="submit" onClick={loginUser}>Login</button>
                         </div>
                       </div>
                     </div>
