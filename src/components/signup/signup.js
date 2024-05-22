@@ -1,29 +1,48 @@
 import { useState } from "react";
 import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 
 const Signup = ()=> {
+  const history=useNavigate();
   const [newUser,setNewUser]=useState({
     fname: '',
     lname: '',
     email:'',
     password:''
   })
-  const signUpUser = async ()=> {
-    console.log('Signing User Up');
-    await axios.post('http://localhost:8080/signup',newUser)
-    .then(res=>{
-      console.log('User Signed Up Successfully',res.data);
-      setNewUser({
-        fname:'',
-        lname:'',
-        email:'',
-        password:'',
-      });
-    })
-    .catch (error=>{
-      console.error('Error Signing User Up:',error);
-    })
-  }
+
+  const sendRequest = async () => {
+    let res;
+    try{
+      res= await axios.post('http://localhost:8080/signup',newUser);
+      //history('/login');
+    } catch(error){
+      return console.log(error);
+    }
+    return await res.data;
+  }  
+  const signUp = (e) => {
+    e.preventDefault();
+    sendRequest()
+    .then(()=>history('/login', { replace: true }))
+  };
+
+  // const signUpUser = async ()=> {
+  //   console.log('Signing User Up');
+  //   await axios.post('http://localhost:8080/signup',newUser)
+  //   .then(res=>{
+  //     console.log('User Signed Up Successfully',res.data);
+  //     setNewUser({
+  //       fname:'',
+  //       lname:'',
+  //       email:'',
+  //       password:'',
+  //     });
+  //   })
+  //   .catch (error=>{
+  //     console.error('Error Signing User Up:',error);
+  //   })
+  // }
   return (
 <section class="bg-light py-3 py-md-5 py-xl-8">
   <div class="container">
@@ -34,7 +53,7 @@ const Signup = ()=> {
         </div>
         <div class="card border border-light-subtle rounded-4">
           <div class="card-body p-3 p-md-4 p-xl-5">
-            <form action="#!">
+            <form onSubmit={signUp}>
               <div class="row gy-3 overflow-hidden">
                 <div class="col-12">
                   <div class="form-floating mb-3">
@@ -70,7 +89,7 @@ const Signup = ()=> {
                 </div>
                 <div class="col-12">
                   <div class="d-grid">
-                    <button class="btn btn-primary btn-lg" type="submit" onClick={signUpUser}>Sign up</button>
+                    <button class="btn btn-primary btn-lg" type="submit">Sign up</button>
                   </div>
                 </div>
               </div>
@@ -78,7 +97,7 @@ const Signup = ()=> {
           </div>
         </div>
         <div class="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-center mt-4">
-          <p class="m-0 text-secondary text-center">Already have an account? <a href="#!" class="link-primary text-decoration-none">Sign in</a></p>
+          <p class="m-0 text-secondary text-center">Already have an account? <a href="#" class="link-primary text-decoration-none"><Link to={'/login'}>Sign in</Link></a></p>
         </div>
       </div>
     </div>

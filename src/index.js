@@ -19,6 +19,11 @@ root.render(
   </BrowserRouter>
 );
 
+export {default as Login } from './components/login/login';
+export {default as Signup } from './components/signup/signup';
+export {default as Home } from './components/home/home';
+export {default as AskQuestion } from './components/askQuestion/askQuestion';
+
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
