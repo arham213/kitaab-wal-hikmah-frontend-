@@ -4,8 +4,9 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../header/header';
-import Sidebar from '../sidebar/sidebar';
+
 function Home(){
+  let date;
   const [questions, setQuestions] = useState([]);
   const history=useNavigate();
   const getQuestions = async () => {
@@ -20,7 +21,7 @@ function Home(){
 
   const handleClick=(id)=>{
     const questionId=id;
-    alert(questionId);
+    //alert(questionId);
     history('/viewQuestion',{state:questionId});
   }
 
@@ -31,17 +32,17 @@ function Home(){
 
     return(
     <div>
-      <div class="container">
+      <div class="container col-10 col-sm-6 col-md-7 col-lg-8 col-xl-9 col-xxl-12">
         <Header/>
-        <div class="card2"></div>
+        <div class="card-style "></div>
         {questions.map(question=>(
           <div id={question._id} onClick={()=>handleClick(question._id)}>
-            <div class="card">
+            <div class="card mb-3">
               <div class="card-body">
                 <h5 class="card-title">{question.question}</h5>
-                <p class="card-text">{question.answer}</p>
+                <p class="card-text">{question.answer.slice(0,90)+" ......"}</p>
               </div>
-              <div class="card-footer text-body-secondary">{question.date}</div>
+              <div class="card-footer">{question.date.slice(4,15)}</div>
             </div>
           </div>
         ))}

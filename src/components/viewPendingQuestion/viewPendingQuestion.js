@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Header from "../header/header";
+import './viewPendingQuestion.css';
 
 function ViewPendingQuestion (){
     const location=useLocation();
@@ -40,14 +41,19 @@ function ViewPendingQuestion (){
     return (
         <div>
             <Header/>
-            <div class="card2 container">
+            <div class="card-style container col-10 col-sm-6 col-md-7 col-lg-8 col-xl-9 col-xxl-12">
                 <div class="card">
-                    <h5 class="card-header mb-2">{question.question}</h5>
-                    <div class="card-body">
-                        <textarea rows={10} cols={145} onChange={(e)=>setAnswerPacket({...answerPacket,answer:e.target.value})}></textarea>
-                    </div>
+                    <h5 class="card-header">{question.question}</h5>
+                    <textarea rows={10} cols={115} onChange={(e)=>setAnswerPacket({...answerPacket,answer:e.target.value})}></textarea>
+                    {/* <div class="card-body">
+                        <textarea rows={10} cols={115} onChange={(e)=>setAnswerPacket({...answerPacket,answer:e.target.value})}></textarea>
+                    </div> */}
                 </div>
-                <button class="btn btn-secondary mt-2" onClick={sendAnswer}>Send Answer</button>
+                <div class="col-12">
+                  <div class="d-grid">
+                    <button class="btn btn-dark btn-lg" onClick={sendAnswer}>Send Answer</button>
+                  </div>
+                </div>
             </div>
         </div>
     )

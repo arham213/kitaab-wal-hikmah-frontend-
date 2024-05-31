@@ -19,7 +19,7 @@ function PendingQuestions(){
 
   const handleClick=(id)=>{
     const questionId=id;
-    alert(questionId);
+    //alert(questionId);
     history('/viewPendingQuestion',{state:questionId});
   }
 
@@ -30,17 +30,19 @@ function PendingQuestions(){
 
     return(
     <div>
-      <div class="container">
+      <div class="container col-10 col-sm-6 col-md-7 col-lg-8 col-xl-9 col-xxl-12">
         <Header/>
-        <div class="card2"></div>
+        <div class="card-style">
+          <h4 class="mb-4 text-center">Pending Questions</h4>
+        </div>
             {pendingQuestions.map(question=>(
                 <div id={question._id} onClick={()=>handleClick(question._id)}>
-                    <div class="card">
+                    <div class="card mb-3">
                     <div class="card-body">
                         <h5 class="card-title">{question.question}</h5>
                         <p class="card-text">{question.answer}</p>
                     </div>
-                    <div class="card-footer text-body-secondary">{question.date}</div>
+                    <div class="card-footer text-body-secondary">{question.date.slice(4,15)}</div>
                     </div>
                 </div>
             ))}

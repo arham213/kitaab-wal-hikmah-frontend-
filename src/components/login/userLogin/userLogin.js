@@ -53,8 +53,8 @@ function UserLogin(){
                         </div>
                       </div>
                       <div class="col-12">
-                        <div class="d-grid">
-                          <button class="btn btn-primary btn-lg" type="submit" onClick={sendLoginRequest}>Login</button>
+                        <div class="d-grid" >
+                          <button class="btn btn-dark btn-lg" type="submit" onClick={sendLoginRequest}>Login</button>
                         </div>
                       </div>
                     </div>

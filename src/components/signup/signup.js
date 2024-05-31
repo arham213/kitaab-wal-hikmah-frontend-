@@ -89,7 +89,7 @@ const Signup = ()=> {
                 </div>
                 <div class="col-12">
                   <div class="d-grid">
-                    <button class="btn btn-primary btn-lg" type="submit">Sign up</button>
+                    <button class="btn btn-dark btn-lg" type="submit">Sign up</button>
                   </div>
                 </div>
               </div>

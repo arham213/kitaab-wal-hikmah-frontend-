@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import nl2br from "react-nl2br";
 import Header from "../header/header";
-import './viewQuestion.css';
 
 function ViewQuestion (){
     const location=useLocation();
@@ -28,11 +27,14 @@ function ViewQuestion (){
     return (
         <div>
             <Header/>
-            <div class="card2 container">
+            <div class="card-style container col-10 col-sm-6 col-md-7 col-lg-8 col-xl-9 col-xxl-12">
                 <div class="card">
-                <h5 class="card-header mb-2">{question.question}</h5>
-                <div class="card-text">
-                    {nl2br(question.answer)}
+                <h5 class="card-header display-6 mb-2">{question.question}</h5>
+                <div class="card-body">
+                    <div class="card-title">
+                        {nl2br(question.answer)}
+                    </div>
+                <div/>
                     {/* <div class="accordion" id="accordionPanelsStayOpenExample">
                         <div class="accordion-item">
                             <h2 class="accordion-header">

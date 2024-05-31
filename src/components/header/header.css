@@ -5,6 +5,9 @@
 }
 
 .hamberg{
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 10px;
+}
+
+.offcanvas-style{
+    width:100px;
 }
