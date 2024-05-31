@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import nl2br from "react-nl2br";
 import Header from "../header/header";
 import './viewQuestion.css';
 
@@ -31,7 +32,8 @@ function ViewQuestion (){
                 <div class="card">
                 <h5 class="card-header mb-2">{question.question}</h5>
                 <div class="card-text">
-                    <div class="accordion" id="accordionPanelsStayOpenExample">
+                    {nl2br(question.answer)}
+                    {/* <div class="accordion" id="accordionPanelsStayOpenExample">
                         <div class="accordion-item">
                             <h2 class="accordion-header">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
@@ -68,7 +70,7 @@ function ViewQuestion (){
                             </div>
                             </div>
                         </div>
-                        </div>
+                        </div> */}
                     </div>
                 {/* <div class="card-footer text-body-secondary">{question.date}</div> */}
                 </div>

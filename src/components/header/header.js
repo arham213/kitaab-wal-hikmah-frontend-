@@ -10,7 +10,9 @@ function Header(){
   const history=useNavigate();
   const sendLogoutRequest= async()=>{
     try{
-      await axios.get('http://localhost:8080/logout');
+      await axios.get('http://localhost:8080/logout')
+      .then(()=>dispatch(authActions.logout()))
+      .then(()=>history('/login'))
     } catch(error){
       return console.log(error);
     }
@@ -28,14 +30,15 @@ function Header(){
         <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
           <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Kitaab wal Hikmah</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <a class="nav-link active" aria-current="page" href="/home">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="/askQuestion">Ask Question</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -67,7 +70,7 @@ function Header(){
               <div class="dropdown" style={{marginLeft:900}}>
                 <img class="userIcon img-fluid rounded dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" src={userIcon} alt="No Image" ></img>
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-end" aria-labelledby="dropdownMenuButton1">
-                  <li><a class="dropdown-item" href="#" onClick={logout}>Logout</a></li>
+                  <li><a class="dropdown-item" href="#" onClick={sendLogoutRequest}>Logout</a></li>
                 </ul>
               </div>
 

@@ -2,9 +2,9 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom"
-import { authActions } from "../../store/store";
+import { authActions } from "../../../store/store";
 
-function Login(){
+function AdminLogin(){
   const dispatch=useDispatch();
   const history=useNavigate();
   const [userCredentials, setUserCredentials]=useState({
@@ -12,21 +12,26 @@ function Login(){
     password:''
   });
 
-  const sendLoginRequest= async()=>{
-    let res;
-    try{
-      res=await axios.post('http://localhost:8080/login',userCredentials);
-    } catch(error){
-      return console.log(error);
-    }
-    return await res.data;
+  const sendLoginRequest= async(e)=>{
+    e.preventDefault();
+    await axios.post('http://localhost:8080/adminlogin', userCredentials)
+    .then(()=>dispatch(authActions.login))
+    .then(()=>history('/viewPendingQuestions',{replace:true}))
+    .catch(error=>{console.log(error)})
+    // let res;
+    // try{
+    //   res=await axios.post('http://localhost:8080/adminlogin',userCredentials);
+    // } catch(error){
+    //   return console.log(error);
+    // }
+    // return await res.data;
   }
 
   const loginUser=(e)=>{
     e.preventDefault();
     sendLoginRequest()
     .then(()=>dispatch(authActions.login()))
-    .then(()=>history('/home',{replace:true}));
+    .then(()=>history('/viewPendingQuestions',{replace:true}));
   }
     return(
         <section class="bg-light py-3 py-md-5 py-xl-8">
@@ -34,7 +39,7 @@ function Login(){
           <div class="row justify-content-center">
             <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
               <div class="mb-5">
-                <h4 class="text-center mb-4">Login</h4>
+                <h4 class="text-center mb-4">Admin Login</h4>
               </div>
               <div class="card border border-light-subtle rounded-4">
                 <div class="card-body p-3 p-md-4 p-xl-5">
@@ -54,15 +59,12 @@ function Login(){
                       </div>
                       <div class="col-12">
                         <div class="d-grid">
-                          <button class="btn btn-primary btn-lg" type="submit" onClick={loginUser}>Login</button>
+                          <button class="btn btn-primary btn-lg" type="submit" onClick={sendLoginRequest}>Login</button>
                         </div>
                       </div>
                     </div>
                   </form>
                 </div>
-              </div>
-              <div class="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-center mt-4">
-                <p class="m-0 text-secondary text-center">Don't have an account? <a href="#!" class="link-primary text-decoration-none"><Link to={'/'}>Sign Up</Link></a></p>
               </div>
             </div>
           </div>
@@ -71,4 +73,4 @@ function Login(){
     )
 }
 
-export default Login;
+export default AdminLogin;

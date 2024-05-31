@@ -2,10 +2,9 @@ import axios from 'axios';
 import './home.css';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import Header from '../header/header';
-import { authActions } from '../../store/store';
-import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import Header from '../header/header';
+import Sidebar from '../sidebar/sidebar';
 function Home(){
   const [questions, setQuestions] = useState([]);
   const history=useNavigate();
