@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import Header from "../header/header";
+import UserHeader from "../header/userHeader/userHeader";
 
 const AskQuestion = ()=> {
   const [newQuestion,setNewQuestion]=useState({
@@ -25,12 +25,12 @@ const AskQuestion = ()=> {
   }
   return (
     <div>
-      <Header/>
+      <UserHeader/>
       <section class="bg-light py-3 py-md-5 py-xl-8">
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
-              <div class="mb-2 mt-4">
+              <div class="mb-2 mt-5">
                 <h4 class="text-center mb-4">Ask Question</h4>
               </div>
               <div class="card border border-light-subtle rounded-4">
@@ -63,7 +63,7 @@ const AskQuestion = ()=> {
                       </div>
                       <div class="col-12">
                         <div class="d-grid">
-                          <button class="btn btn-primary btn-lg" type="submit" onClick={sendQuestion}>Send</button>
+                          <button class="btn btn-dark btn-lg" type="submit" onClick={sendQuestion}>Send</button>
                         </div>
                       </div>
                     </div>

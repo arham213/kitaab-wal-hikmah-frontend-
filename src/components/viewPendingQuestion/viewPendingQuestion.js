@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import Header from "../header/header";
+import { useLocation, useNavigate } from "react-router-dom";
+import AdminHeader from '../header/adminHeader/adminHeader';
 import './viewPendingQuestion.css';
 
 function ViewPendingQuestion (){
@@ -13,6 +13,7 @@ function ViewPendingQuestion (){
         questionId:id,
         answer:''
     });
+    const history=useNavigate();
     const getQuestion = async () => {
         await axios.get('http://localhost:8080/getQuestion/'+id)
         .then(res => {
@@ -26,9 +27,7 @@ function ViewPendingQuestion (){
 
     const sendAnswer= async()=>{
         await axios.put('http://localhost:8080/sendAnswer',answerPacket)
-        .then(res=>{
-            console.log(res);
-        })
+        .then(()=>{history('/viewPendingQuestions')})
         .catch(error=>{
             console.log("Error Sending the Answer:", error);
         })
@@ -40,11 +39,11 @@ function ViewPendingQuestion (){
 
     return (
         <div>
-            <Header/>
+            <AdminHeader/>
             <div class="card-style container col-10 col-sm-6 col-md-7 col-lg-8 col-xl-9 col-xxl-12">
                 <div class="card">
                     <h5 class="card-header">{question.question}</h5>
-                    <textarea rows={10} cols={115} onChange={(e)=>setAnswerPacket({...answerPacket,answer:e.target.value})}></textarea>
+                    <textarea rows={13} cols={115} onChange={(e)=>setAnswerPacket({...answerPacket,answer:e.target.value})}></textarea>
                     {/* <div class="card-body">
                         <textarea rows={10} cols={115} onChange={(e)=>setAnswerPacket({...answerPacket,answer:e.target.value})}></textarea>
                     </div> */}

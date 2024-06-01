@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import Header from '../header/header';
 import { useNavigate } from 'react-router-dom';
-function PendingQuestions(){
+import AdminHeader from '../header/adminHeader/adminHeader';
+
+function ViewPendingQuestions(){
   const [pendingQuestions, setPendingQuestions] = useState([]);
   const history=useNavigate();
 
@@ -31,11 +32,12 @@ function PendingQuestions(){
     return(
     <div>
       <div class="container col-10 col-sm-6 col-md-7 col-lg-8 col-xl-9 col-xxl-12">
-        <Header/>
+        <AdminHeader/>
         <div class="card-style">
           <h4 class="mb-4 text-center">Pending Questions</h4>
         </div>
-            {pendingQuestions.map(question=>(
+          {pendingQuestions.length >0 ? (
+            pendingQuestions.map(question=>(
                 <div id={question._id} onClick={()=>handleClick(question._id)}>
                     <div class="card mb-3">
                     <div class="card-body">
@@ -45,10 +47,15 @@ function PendingQuestions(){
                     <div class="card-footer text-body-secondary">{question.date.slice(4,15)}</div>
                     </div>
                 </div>
-            ))}
+            ))) : (
+              <div style={{textAlign:'center'}} class='mt-5'>
+                There are no Pending Questions right now
+              </div>
+            )
+          }
         </div>
     </div>
 )
 }
 
-export default PendingQuestions;
+export default ViewPendingQuestions;

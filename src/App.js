@@ -7,7 +7,7 @@ import Signup from './components/signup/signup';
 import Home from './components/home/home';
 import AskQuestion from './components/askQuestion/askQuestion';
 import ViewQuestion from './components/viewQuestion/viewQuestion';
-import PendingQuestions from './components/pendingQuestions/pendingQuestions';
+import ViewPendingQuestions from './components/viewPendingQuestions/viewPendingQuestions';
 import ViewPendingQuestion from './components/viewPendingQuestion/viewPendingQuestion';
 import AdminLogin from './components/login/adminLogin/adminLogin';
 
@@ -17,13 +17,13 @@ function App() {
     <React.Fragment>
       <main>
         <Routes>
-          <Route path='/' element={<Signup/>}/>
+          <Route path='/' element={<Home/>}/>
+          <Route path='/signup' element={<Signup/>}/>
           <Route path='/login' element={<UserLogin/>}/>
           <Route path='/AdMiN-u-LoGiN' element={<AdminLogin/>}/>
-          {isLoggedIn && <Route path='/home' element={<Home/>}/>}{" "}
           <Route path='/askQuestion' element={<AskQuestion/>}/>
           <Route path='/viewQuestion' element={<ViewQuestion/>}/>
-          <Route path='/viewPendingQuestions' element={<PendingQuestions/>}/>
+          <Route path='/viewPendingQuestions' element={<ViewPendingQuestions/>}/>
           <Route path='/viewPendingQuestion' element={<ViewPendingQuestion/>}/>
         </Routes>
       </main>

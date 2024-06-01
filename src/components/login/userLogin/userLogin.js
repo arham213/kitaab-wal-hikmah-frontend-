@@ -15,7 +15,7 @@ function UserLogin(){
   const sendLoginRequest= async(e)=>{
     e.preventDefault();
     await axios.post('http://localhost:8080/userlogin',userCredentials)
-      .then(()=>history('/home'))
+      .then(()=>history('/'))
       .then(()=>dispatch(authActions.login()))
       .catch(error=>{
         console.log(error);
@@ -62,7 +62,7 @@ function UserLogin(){
                 </div>
               </div>
               <div class="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-center mt-4">
-                <p class="m-0 text-secondary text-center">Don't have an account? <a href="#!" class="link-primary text-decoration-none"><Link to={'/'}>Sign Up</Link></a></p>
+                <p class="m-0 text-secondary text-center">Don't have an account? <a href="#!" class="link-primary text-decoration-none"><Link to={'/signup'}>Sign Up</Link></a></p>
               </div>
             </div>
           </div>

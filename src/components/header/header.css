@@ -8,6 +8,22 @@
     margin-left: 10px;
 }
 
-.offcanvas-style{
-    width:100px;
-}
+.nav-item a {
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+  }
+  
+  /* Active/current link */
+  .nav-item a.active {
+    background-color: grey;
+    color: white;
+  }
+  
+  /* Links on mouse-over */
+  .nav-item a:hover:not(.active) {
+    background-color: black;
+    color: white;
+  }
+  

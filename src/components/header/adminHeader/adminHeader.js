@@ -1,18 +1,18 @@
-import userIcon from '../../assets/images/icons8-person-30.png';
-import './header.css';
-import { authActions } from '../../store/store';
+import userIcon from '../../../assets/images/icons8-person-30.png';
+import { authActions } from '../../../store/store';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+import '../header.css';
 
-function Header(){
+function AdminHeader(){
   const dispatch=useDispatch();
   const history=useNavigate();
   const sendLogoutRequest= async()=>{
     try{
       await axios.get('http://localhost:8080/logout')
       .then(()=>dispatch(authActions.logout()))
-      .then(()=>history('/login'))
+      .then(()=>history('/AdMiN-u-LoGiN'))
     } catch(error){
       return console.log(error);
     }
@@ -23,7 +23,7 @@ function Header(){
     e.preventDefault();
     sendLogoutRequest()
     .then(()=>dispatch(authActions.logout()))
-    .then(()=>history('/login'));
+    .then(()=>history('/AdMiN-u-LoGiN'));
   }
     return(
       <div>
@@ -35,11 +35,11 @@ function Header(){
           <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/home">Home</a>
+                <a class="nav-link" aria-current="page" href="/viewPendingQuestions">Home</a>
               </li>
-              <li class="nav-item">
+              {/* <li class="nav-item">
                 <a class="nav-link" href="/askQuestion">Ask Question</a>
-              </li>
+              </li> */}
               {/* <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Dropdown
@@ -117,4 +117,4 @@ function Header(){
     )
 }
 
-export default Header;
+export default AdminHeader;

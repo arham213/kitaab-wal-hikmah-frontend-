@@ -3,11 +3,13 @@ import './home.css';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Header from '../header/header';
+import UserHeader from '../header/userHeader/userHeader';
+import HomeHeader from '../header/homeHeader/homeHeader';
+import { useSelector } from 'react-redux';
 
 function Home(){
-  let date;
   const [questions, setQuestions] = useState([]);
+  const isLoggedIn=useSelector(state=>state.isLoggedIn);
   const history=useNavigate();
   const getQuestions = async () => {
     await axios.get('http://localhost:8080/getQuestions')
@@ -33,7 +35,7 @@ function Home(){
     return(
     <div>
       <div class="container col-10 col-sm-6 col-md-7 col-lg-8 col-xl-9 col-xxl-12">
-        <Header/>
+        {isLoggedIn ? <UserHeader/> : <HomeHeader/>}
         <div class="card-style "></div>
         {questions.map(question=>(
           <div id={question._id} onClick={()=>handleClick(question._id)}>

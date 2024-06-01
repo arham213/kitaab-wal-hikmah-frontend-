@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import nl2br from "react-nl2br";
-import Header from "../header/header";
+import UserHeader from "../header/userHeader/userHeader";
 
 function ViewQuestion (){
     const location=useLocation();
@@ -26,7 +26,7 @@ function ViewQuestion (){
 
     return (
         <div>
-            <Header/>
+            <UserHeader/>
             <div class="card-style container col-10 col-sm-6 col-md-7 col-lg-8 col-xl-9 col-xxl-12">
                 <div class="card">
                 <h5 class="card-header display-6 mb-2">{question.question}</h5>

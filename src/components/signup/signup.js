@@ -97,7 +97,7 @@ const Signup = ()=> {
           </div>
         </div>
         <div class="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-center mt-4">
-          <p class="m-0 text-secondary text-center">Already have an account? <a href="#" class="link-primary text-decoration-none"><Link to={'/login'}>Log in</Link></a></p>
+          <p class="m-0 text-secondary text-center">Already have an account? <a class="link-primary text-decoration-none"><Link to={'/login'}>Log in</Link></a></p>
         </div>
       </div>
     </div>
